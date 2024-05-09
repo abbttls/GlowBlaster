@@ -19,6 +19,7 @@ void loop() {
   pistolNightMode();
 }
 
+// fire one shot of the laser, play fire noise
 void shootLaser() {
   // briely turns on laser diode and plays sound
   digitalWrite(laserPin, HIGH);
@@ -28,7 +29,7 @@ void shootLaser() {
   delay(2);  // because 8 + 2 = 10, and 10 is a nice number.
 }
 
-// plays a noise, reloads gun, and waits for release of button
+// play a noise, reload blaster, and wait for release of button
 void reload() {
   // sounds start at 400 Hz and move up by 50, then 100, then 200, and so on.
   tone(buzzerPin, 400, 50);
@@ -53,7 +54,7 @@ void reload() {
   }
 }
 
-// reads the value of buttonPin, and initiates reloading, switches the gun mode, or does nothing
+// read the value of buttonPin, and initiate reloading, switches the gun mode, or does nothing
 void checkButton() {
   if (digitalRead(buttonPin) == HIGH) {
     int long pressTime = millis();
@@ -66,7 +67,7 @@ void checkButton() {
         }
       }
       
-      // To reload, the user must hold the button for a minimum of 1 second (1000 milliseconds)
+      // to reload, the user must hold the button for a minimum of 1 second (1000 milliseconds)
       if (((millis() - pressTime) >= 1000) && modeNumber != 5) {
         reload();
         break;
@@ -75,7 +76,7 @@ void checkButton() {
   }
 }
 
-// delays, and checks for button input between rounds
+// delay, and check for button input between rounds
 void delayBetweenRounds(int totalDelay) {
   int long delayStartTime = millis();
   
@@ -158,6 +159,7 @@ void SMG() {
   switchingModes = false; // resets switchingModes for the next mode
 }
 
+// semi-auto pistol mode with no sound + no reloading
 void pistolNightMode() {
   modeNumber = 5;
   roundNumber = 2;
