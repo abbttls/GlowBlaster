@@ -58,6 +58,7 @@ void loop() {
   pistolNightMode();
 }
 
+// fire the laser one time with sound
 void shootLaser() {
   // briely turns on laser diode and plays sound
   digitalWrite(laserPin, HIGH);
@@ -71,7 +72,7 @@ void shootLaser() {
   digitalWrite(A5, LOW);
 }
 
-// plays a noise, reloads gun, and waits for release of button
+// play a noise, reload gun, and wait for release of button
 void reload() {
   // sounds start at 400 Hz and move up by 50, then 100, then 200, and so on.
   tone(speakerPin, 400, 50);
@@ -87,7 +88,7 @@ void reload() {
   roundNumber = 1;
 }
 
-// checks left button in order to toggle reloading or change modes
+// check left button in order to toggle reloading or change modes
 void checkLeftButton() {
   if (digitalRead(leftButtonPin) == LOW) {
     stopPlayback();
@@ -136,7 +137,7 @@ void checkLeftButton() {
   }
 }
 
-// checks right button for reloading
+// check right button for reloading
 void checkRightButton() {
   if (digitalRead(rightButtonPin) == LOW) {
     long int pressTime = millis();
@@ -156,7 +157,7 @@ void checkRightButton() {
   }
 }
 
-// checks right and left buttons for reloading and settings adjustment
+// check right and left buttons for reloading and settings adjustment
 void checkButtons(int maxRound) {
   checkLeftButton();
   if (reloadingOn) {
@@ -165,7 +166,7 @@ void checkButtons(int maxRound) {
   }
 }
 
-// overrides reloading requirement if reloadingOn is false
+// override reloading requirement if reloadingOn is false
 void reloadOverride() {
   if (!reloadingOn) {
     roundNumber = 1;
