@@ -2,6 +2,7 @@
 ### A unique and customizable Star Wars-inspired blaster toy with audio, visual, and haptic feedback.
 
 <p align="center">
+  <img src="assets/short-ezgif.com-optimize.gif" height=300>
   <img src="assets/lb_parts.jpg" height=300>
   <img src="assets/short-ezgif.com-optimize.gif" height=300>
 </p>
