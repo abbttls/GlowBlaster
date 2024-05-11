@@ -10,5 +10,4 @@ The blaster uses an Arduino Nano microcontroller board to pulse a 405 nm laser, 
 See build_instructions.pdf for more info and instructions on how to build this yourself. Have fun with the best Star Wars toy money can't buy!
 
 ## Demo Video
-assets/lb_demo.MP4
 https://youtu.be/vtG4vrYUyLA
