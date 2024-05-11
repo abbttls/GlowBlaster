@@ -15,6 +15,11 @@ https://youtu.be/vtG4vrYUyLA
 
 ## Gallery
 <p>
-  <img src="assets/short-ezgif.com-optimize.gif" height=300>
-  
+  <img src="assets/short-ezgif.com-optimize.gif" height=250>
+  <img src="assets/70797708495__2B8C7910-2858-41E5-AC9A-E88DD9CD2ABC.JPEG" height=250>
+  <img src="assets/IMG_7176.JPEG.gif" height=250>
+  <img src="assets/IMG_7249.JPEG" height=250>
+  <img src="assets/IMG_7277.JPEG" height=250>
+  <img src="assets/IMG_7522.JPEG" height=250>
+  <img src="assets/IMG_7562.JPEG" height=250>
 </p>
