@@ -12,3 +12,9 @@ See build_instructions.pdf for more info and instructions on how to build this y
 
 ## Demo Video
 https://youtu.be/vtG4vrYUyLA
+
+## Gallery
+<p>
+  <img src="assets/short-ezgif.com-optimize.gif" height=300>
+  
+</p>
