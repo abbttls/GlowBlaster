@@ -1,5 +1,5 @@
 # GlowBlaster
-### A unique and customizable Star Wars-inspired blaster toy with audio, visual, and haptic feedback
+### A unique and customizable Star Wars-inspired blaster toy with audio, visual, and haptic feedback.
 
 <p align="center">
   <img src="assets/lb_parts.jpg" height=300>
