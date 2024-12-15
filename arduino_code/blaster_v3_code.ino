@@ -1,3 +1,17 @@
+/*
+GlowBlaster Version 3 Arduino Code
+
+This Arduino code is embedded logic for the GlowBlaster project, created and maintained by Louis Abbott.
+
+GlowBlaster pulses a 405 nm laser, producing green dots on glow-in-the-dark targets.
+This code implements 5 firing modes and reloading functionality for the blaster.
+
+It is assumed that this will be uploaded on an Arduino Nano board wired according to this project's
+build guide with pin usage matching the variable assignments below. This version of the blaster code
+utilizes two buttons in addition to a trigger. To compile/upload successfully, the Arduino PCM library
+must be installed (https://docs.arduino.cc/libraries/pcm/).
+*/
+
 #include <PCM.h>
 
 const unsigned char sample[] PROGMEM = {
@@ -9,17 +23,17 @@ const byte vibratorPin = 7;
 const byte speakerPin = 11;
 
 const byte triggerPin = 5;
-const byte leftButtonPin = 4;  // button used for switching modes
-const byte rightButtonPin = 3; // button used for reloading
+const byte leftButtonPin = 4;     // button used for switching modes
+const byte rightButtonPin = 3;    // button used for reloading
 
-const byte ledPin1 = A1; // leftmost LED
+const byte ledPin1 = A1;          // leftmost LED
 const byte ledPin2 = A2;
 const byte ledPin3 = A3;
 
-byte roundNumber;  // stores the round the gun is on
-byte modeNumber; // stores the mode as a number between 1 and 5 (inclusive)
-bool switchingModes = false;  // tells the program whether or not to switch modes
-bool reloadingOn = true; // reloading ON by default
+byte roundNumber;                 // stores the round the gun is on
+byte modeNumber;                  // stores the mode as a number between 1 and 5 (inclusive)
+bool switchingModes = false;      // tells the program whether or not to switch modes
+bool reloadingOn = true;          // reloading ON by default
 
 void setup() {
   pinMode(laserPin, OUTPUT);
@@ -141,6 +155,7 @@ void checkLeftButton() {
 void checkRightButton() {
   if (digitalRead(rightButtonPin) == LOW) {
     long int pressTime = millis();
+
     // To reload, the user must hold the button for a minimum of 1 second (1000 milliseconds)
     while (digitalRead(rightButtonPin) == LOW) {
       if (((millis() - pressTime) >= 1000) && modeNumber != 5) {
@@ -177,6 +192,7 @@ void reloadOverride() {
 void triggerReloadCheck(int maxRound) {
   if ((digitalRead(triggerPin) == LOW) && (roundNumber > maxRound) && reloadingOn) {
     long int pressTime = millis();
+
     // To reload, the user must hold the trigger for a minimum of 1 second (1000 milliseconds)
     while (digitalRead(triggerPin) == LOW) {
       if (((millis() - pressTime) >= 1000)) {
@@ -238,19 +254,19 @@ void burst() {
   roundNumber = 1;
   while (!switchingModes) {
     if ((digitalRead(triggerPin) == LOW) && (roundNumber <= 30)) {
+      // fires a burst of 3 shots, even if user releases trigger before end of burst
       shootLaser();
       delay(40); // time based on legendary burst assault rifle in Fortnite
       shootLaser();
       delay(40);
       shootLaser();
-      // fires a burst of 3 shots, even if user releases trigger before end of burst
       roundNumber += 3;
       delay(340); // time based on legendary burst assault rifle in Fortnite
     }
     reloadOverride();
     checkButtons(30);
   }
-  switchingModes = false; // resets switchingModes for next mode
+  switchingModes = false; // reset switchingModes for next mode
 }
 
 // rapid fire/submachine gun mode

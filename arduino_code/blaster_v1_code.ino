@@ -1,9 +1,23 @@
+/*
+GlowBlaster Version 1 Arduino Code
+
+This Arduino code is embedded logic for the GlowBlaster project, created and maintained by Louis Abbott.
+
+GlowBlaster pulses a 405 nm laser, producing green dots on glow-in-the-dark targets.
+This code implements 5 firing modes and reloading functionality for the blaster.
+
+WARNING: DO NOT USE IF BUILDING FROM build_instructions.pdf. This code is intended for use with
+an earlier version of the blaster with a buzzer instead of a speaker and a SINGLE button for
+both reloading and mode switching. It exists for use only with my own prototype and as a
+reference for anyone looking to simplify the aforementioned features.
+*/
+
 const byte laserPin = 9;
 const byte buzzerPin = A2;
 const byte triggerPin = 7;
-const byte buttonPin = 5;  // button used for reloading and switching modes
-byte roundNumber;  // stores the round the gun is on
-byte modeNumber; // stores the mode as a number between 1 and 5 (inclusive)
+const byte buttonPin = 5;     // button used for reloading and switching modes
+byte roundNumber;             // stores the round the gun is on
+byte modeNumber;              // stores the mode as a number between 1 and 5 (inclusive)
 bool switchingModes = false;  // tells the program whether or not to switch modes
 
 void setup() {
@@ -21,7 +35,6 @@ void loop() {
 
 // fire one shot of the laser, play fire noise
 void shootLaser() {
-  // briely turns on laser diode and plays sound
   digitalWrite(laserPin, HIGH);
   tone(buzzerPin, 2000, 8);
   delay(8);  // 8 milliseconds minimized duration while maintaining dot brightness.
@@ -54,7 +67,7 @@ void reload() {
   }
 }
 
-// read the value of buttonPin, and initiate reloading, switches the gun mode, or does nothing
+// read the value of buttonPin, then initiate reloading, switch the gun mode, or do nothing
 void checkButton() {
   if (digitalRead(buttonPin) == HIGH) {
     int long pressTime = millis();
